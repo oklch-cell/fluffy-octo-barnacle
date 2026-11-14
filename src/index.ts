@@ -1,10 +1,11 @@
 import { Elysia, t } from "elysia";
+import { node } from "@elysia/node";
 
 const port = process.env.PORT!;
 
 const users = new Map();
 
-export default new Elysia()
+export default new Elysia({ adapter: node() })
   .get("/", () => "Hello from GET /")
   .ws("/api/ws", {
     body: t.Object({
