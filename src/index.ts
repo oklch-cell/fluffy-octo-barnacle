@@ -1,11 +1,13 @@
 import { Elysia, t } from "elysia";
 import { node } from "@elysia/node";
+import { cors } from "@elysia/cors";
 
 const port = process.env.PORT!;
 
 const users = new Map();
 
 export default new Elysia({ adapter: node() })
+  .use(cors({ origin: "*" }))
   .get("/", () => "Hello from GET /")
   .ws("/api/ws", {
     body: t.Object({
